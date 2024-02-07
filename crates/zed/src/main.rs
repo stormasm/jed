@@ -51,7 +51,7 @@ use util::{
     ResultExt,
 };
 use uuid::Uuid;
-use welcome::{show_welcome_view, BaseKeymap, FIRST_OPEN};
+use welcome::{show_welcome_view, FIRST_OPEN};
 use workspace::{AppState, WorkspaceStore};
 use zed::{
     app_menus, build_window_options, ensure_only_instance, handle_cli_connection,
@@ -76,7 +76,7 @@ fn main() {
     log::info!("========== starting zed ==========");
     let app = App::new().with_assets(Assets);
 
-    let (installation_id, existing_installation_id_found) = app
+    let (installation_id, _existing_installation_id_found) = app
         .background_executor()
         .block(installation_id())
         .ok()
@@ -204,6 +204,7 @@ fn main() {
         })
         .detach();
 
+        /*
         let telemetry = client.telemetry();
         telemetry.start(installation_id, session_id, cx);
         telemetry.report_setting_event("theme", cx.theme().name.to_string());
@@ -216,6 +217,7 @@ fn main() {
             .to_string(),
         );
         telemetry.flush_events();
+        */
 
         let app_state = Arc::new(AppState {
             languages: languages.clone(),
