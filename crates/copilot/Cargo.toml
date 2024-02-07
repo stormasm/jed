@@ -1,0 +1,50 @@
+[package]
+name = "copilot"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "GPL-3.0-or-later"
+
+[lib]
+path = "src/copilot.rs"
+doctest = false
+
+[features]
+test-support = [
+    "collections/test-support",
+    "gpui/test-support",
+    "language/test-support",
+    "lsp/test-support",
+    "settings/test-support",
+    "util/test-support",
+]
+
+[dependencies]
+anyhow.workspace = true
+async-compression.workspace = true
+async-tar = "0.4.2"
+collections.workspace = true
+futures.workspace = true
+gpui.workspace = true
+language.workspace = true
+log.workspace = true
+lsp.workspace = true
+node_runtime.workspace = true
+parking_lot.workspace = true
+serde.workspace = true
+serde_derive.workspace = true
+settings.workspace = true
+smol.workspace = true
+theme.workspace = true
+util.workspace = true
+
+[dev-dependencies]
+clock.workspace = true
+collections = { workspace = true, features = ["test-support"] }
+fs = { workspace = true, features = ["test-support"] }
+gpui = { workspace = true, features = ["test-support"] }
+language = { workspace = true, features = ["test-support"] }
+lsp = { workspace = true, features = ["test-support"] }
+rpc = { workspace = true, features = ["test-support"] }
+settings = { workspace = true, features = ["test-support"] }
+util = { workspace = true, features = ["test-support"] }

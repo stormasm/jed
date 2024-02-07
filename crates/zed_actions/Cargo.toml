@@ -1,0 +1,10 @@
+[package]
+name = "zed_actions"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "GPL-3.0-or-later"
+
+[dependencies]
+gpui.workspace = true
+serde.workspace = true
