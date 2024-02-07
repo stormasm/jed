@@ -143,7 +143,7 @@ fn main() {
 
         let client = client::Client::new(http.clone(), cx);
         let mut languages = LanguageRegistry::new(login_shell_env_loaded);
-        let copilot_language_server_id = languages.next_language_server_id();
+        //let copilot_language_server_id = languages.next_language_server_id();
         languages.set_executor(cx.background_executor().clone());
         languages.set_language_server_download_dir(paths::LANGUAGES_DIR.clone());
         let languages = Arc::new(languages);
@@ -164,12 +164,17 @@ fn main() {
         language::init(cx);
         editor::init(cx);
         diagnostics::init(cx);
+        /*
         copilot::init(
             copilot_language_server_id,
             http.clone(),
             node_runtime.clone(),
             cx,
         );
+        */
+        // This needs to stay for now until I figure out what is up with the SettingsStore get function panicing
+        // when I try to Get the value of a setting.
+        // Panics if the given setting type has not been registered, or if there is no value for this setting
         assistant::init(cx);
 
         load_user_themes_in_background(fs.clone(), cx);
