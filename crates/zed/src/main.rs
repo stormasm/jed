@@ -161,10 +161,6 @@ fn main() {
         language::init(cx);
         editor::init(cx);
         diagnostics::init(cx);
-        // This needs to stay for now until I figure out what is up with the SettingsStore get function panicing
-        // when I try to Get the value of a setting.
-        // Panics if the given setting type has not been registered, or if there is no value for this setting
-        assistant::init(cx);
 
         load_user_themes_in_background(fs.clone(), cx);
         watch_themes(fs.clone(), cx);
