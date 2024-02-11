@@ -8,7 +8,6 @@ use cli::FORCE_CLI_MODE_ENV_VAR_NAME;
 use client::{Client, UserStore};
 use db::kvp::KEY_VALUE_STORE;
 use editor::Editor;
-use env_logger::Builder;
 use fs::RealFs;
 use fsevent::StreamFlags;
 use futures::StreamExt;
@@ -325,56 +324,28 @@ fn init_paths() {
 }
 
 fn init_logger() {
-    if stdout_is_a_pty() {
-        Builder::new()
-            .parse_default_env()
-            .format(|buf, record| {
-                use env_logger::fmt::Color;
+    let level = LevelFilter::Info;
 
-                let subtle = buf
-                    .style()
-                    .set_color(Color::Black)
-                    .set_intense(true)
-                    .clone();
-                write!(buf, "{}", subtle.value("["))?;
-                write!(
-                    buf,
-                    "{} ",
-                    chrono::Local::now().format("%Y-%m-%dT%H:%M:%S%:z")
-                )?;
-                write!(buf, "{:<5}", buf.default_styled_level(record.level()))?;
-                if let Some(path) = record.module_path() {
-                    write!(buf, " {}", path)?;
-                }
-                write!(buf, "{}", subtle.value("]"))?;
-                writeln!(buf, " {}", record.args())
-            })
-            .init();
-    } else {
-        let level = LevelFilter::Info;
-
-        // Prevent log file from becoming too large.
-        const KIB: u64 = 1024;
-        const MIB: u64 = 1024 * KIB;
-        const MAX_LOG_BYTES: u64 = MIB;
-        if std::fs::metadata(&*paths::LOG).map_or(false, |metadata| metadata.len() > MAX_LOG_BYTES)
-        {
-            let _ = std::fs::rename(&*paths::LOG, &*paths::OLD_LOG);
-        }
-
-        let log_file = OpenOptions::new()
-            .create(true)
-            .append(true)
-            .open(&*paths::LOG)
-            .expect("could not open logfile");
-
-        let config = ConfigBuilder::new()
-            .set_time_format_str("%Y-%m-%dT%T%:z")
-            .set_time_to_local(true)
-            .build();
-
-        simplelog::WriteLogger::init(level, config, log_file).expect("could not initialize logger");
+    // Prevent log file from becoming too large.
+    const KIB: u64 = 1024;
+    const MIB: u64 = 1024 * KIB;
+    const MAX_LOG_BYTES: u64 = MIB;
+    if std::fs::metadata(&*paths::LOG).map_or(false, |metadata| metadata.len() > MAX_LOG_BYTES) {
+        let _ = std::fs::rename(&*paths::LOG, &*paths::OLD_LOG);
     }
+
+    let log_file = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(&*paths::LOG)
+        .expect("could not open logfile");
+
+    let config = ConfigBuilder::new()
+        .set_time_format_str("%Y-%m-%dT%T%:z")
+        .set_time_to_local(true)
+        .build();
+
+    simplelog::WriteLogger::init(level, config, log_file).expect("could not initialize logger");
 }
 
 #[derive(Serialize, Deserialize)]
