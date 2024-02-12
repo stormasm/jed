@@ -1,5 +1,5 @@
-mod base_keymap_picker;
-mod base_keymap_setting;
+//mod base_keymap_picker;
+//mod base_keymap_setting;
 
 use client::{telemetry::Telemetry, TelemetrySettings};
 use db::kvp::KEY_VALUE_STORE;
@@ -18,12 +18,12 @@ use workspace::{
     open_new, AppState, Welcomg, Workspace, WorkspaceId,
 };
 
-pub use base_keymap_setting::BaseKeymap;
+//pub use base_keymap_setting::BaseKeymap;
 
 pub const FIRST_OPEN: &str = "first_open";
 
 pub fn init(cx: &mut AppContext) {
-    BaseKeymap::register(cx);
+    // BaseKeymap::register(cx);
 
     cx.observe_new_views(|workspace: &mut Workspace, _cx| {
         workspace.register_action(|workspace, _: &Welcomg, cx| {
@@ -33,7 +33,7 @@ pub fn init(cx: &mut AppContext) {
     })
     .detach();
 
-    base_keymap_picker::init(cx);
+    //base_keymap_picker::init(cx);
 }
 
 pub fn show_welcome_view(app_state: &Arc<AppState>, cx: &mut AppContext) {
@@ -79,44 +79,23 @@ impl Render for WelcomePage {
                     )
                     .child(h_flex().justify_center().child(Label::new("Hello World")))
                     .child(
-                        v_flex()
-                            .gap_2()
-                            .child(
-                                Button::new("choose-theme", "Choose a theme")
-                                    .full_width()
-                                    .on_click(cx.listener(|this, _, cx| {
-                                        this.telemetry.report_app_event(
-                                            "welcome page: change theme".to_string(),
-                                        );
-                                        this.workspace
-                                            .update(cx, |workspace, cx| {
-                                                theme_selector::toggle(
-                                                    workspace,
-                                                    &Default::default(),
-                                                    cx,
-                                                )
-                                            })
-                                            .ok();
-                                    })),
-                            )
-                            .child(
-                                Button::new("choose-keymap", "Choose a keymap")
-                                    .full_width()
-                                    .on_click(cx.listener(|this, _, cx| {
-                                        this.telemetry.report_app_event(
-                                            "welcome page: change keymap".to_string(),
-                                        );
-                                        this.workspace
-                                            .update(cx, |workspace, cx| {
-                                                base_keymap_picker::toggle(
-                                                    workspace,
-                                                    &Default::default(),
-                                                    cx,
-                                                )
-                                            })
-                                            .ok();
-                                    })),
-                            ),
+                        v_flex().gap_2().child(
+                            Button::new("choose-theme", "Choose a theme")
+                                .full_width()
+                                .on_click(cx.listener(|this, _, cx| {
+                                    this.telemetry
+                                        .report_app_event("welcome page: change theme".to_string());
+                                    this.workspace
+                                        .update(cx, |workspace, cx| {
+                                            theme_selector::toggle(
+                                                workspace,
+                                                &Default::default(),
+                                                cx,
+                                            )
+                                        })
+                                        .ok();
+                                })),
+                        ),
                     )
                     .child(
                         v_flex()
