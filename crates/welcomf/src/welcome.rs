@@ -80,7 +80,7 @@ impl Render for WelcomePage {
                     .child(
                         h_flex()
                             .justify_center()
-                            .child(Label::new("Code at the speed of thought")),
+                            .child(Label::new("Code Jed at the speed of thought")),
                     )
                     .child(
                         v_flex()
