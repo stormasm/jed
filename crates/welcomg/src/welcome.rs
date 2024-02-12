@@ -79,23 +79,6 @@ impl Render for WelcomePage {
                     )
                     .child(h_flex().justify_center().child(Label::new("Hello World")))
                     .child(
-                        v_flex().gap_2().child(
-                            Button::new("choose-theme", "Choose a theme")
-                                .full_width()
-                                .on_click(cx.listener(|this, _, cx| {
-                                    this.workspace
-                                        .update(cx, |workspace, cx| {
-                                            theme_selector::toggle(
-                                                workspace,
-                                                &Default::default(),
-                                                cx,
-                                            )
-                                        })
-                                        .ok();
-                                })),
-                        ),
-                    )
-                    .child(
                         v_flex()
                             .p_3()
                             .gap_2()
