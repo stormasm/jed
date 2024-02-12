@@ -15,7 +15,7 @@ use vim::VimModeSetting;
 use workspace::{
     dock::DockPosition,
     item::{Item, ItemEvent},
-    open_new, AppState, Welcome, Workspace, WorkspaceId,
+    open_new, AppState, Welcomf, Workspace, WorkspaceId,
 };
 
 pub use base_keymap_setting::BaseKeymap;
@@ -26,7 +26,7 @@ pub fn init(cx: &mut AppContext) {
     BaseKeymap::register(cx);
 
     cx.observe_new_views(|workspace: &mut Workspace, _cx| {
-        workspace.register_action(|workspace, _: &Welcome, cx| {
+        workspace.register_action(|workspace, _: &Welcomf, cx| {
             let welcome_page = WelcomePage::new(workspace, cx);
             workspace.add_item(Box::new(welcome_page), cx)
         });

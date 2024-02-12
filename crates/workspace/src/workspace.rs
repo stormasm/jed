@@ -113,6 +113,7 @@ actions!(
         Feedback,
         Restart,
         Welcome,
+        Welcomf,
         ToggleZoom,
         ToggleLeftDock,
         ToggleRightDock,
