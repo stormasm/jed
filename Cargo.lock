@@ -9914,13 +9914,10 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "db",
- "editor",
  "gpui",
- "picker",
  "serde",
  "settings",
  "ui",
- "util",
  "workspace",
 ]
 

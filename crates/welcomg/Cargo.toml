@@ -8,19 +8,11 @@ license = "GPL-3.0-or-later"
 [lib]
 path = "src/welcome.rs"
 
-[features]
-test-support = []
-
 [dependencies]
 anyhow.workspace = true
 db.workspace = true
 gpui.workspace = true
-picker.workspace = true
 serde.workspace = true
 settings.workspace = true
 ui.workspace = true
-util.workspace = true
 workspace.workspace = true
-
-[dev-dependencies]
-editor = { workspace = true, features = ["test-support"] }
