@@ -11,7 +11,7 @@ use gpui::{
 use settings::{Settings, SettingsStore};
 use std::sync::Arc;
 use ui::{prelude::*, Checkbox};
-use vim::VimModeSetting;
+//use vim::VimModeSetting;
 use workspace::{
     dock::DockPosition,
     item::{Item, ItemEvent},
@@ -120,20 +120,6 @@ impl Render for WelcomePage {
                                             })
                                             .ok();
                                     })),
-                            )
-                            .child(
-                                Button::new("install-cli", "Install the CLI")
-                                    .full_width()
-                                    .on_click(cx.listener(|this, _, cx| {
-                                        this.telemetry.report_app_event(
-                                            "welcome page: install cli".to_string(),
-                                        );
-                                        cx.app_mut()
-                                            .spawn(|cx| async move {
-                                                install_cli::install_cli(&cx).await
-                                            })
-                                            .detach_and_log_err(cx);
-                                    })),
                             ),
                     )
                     .child(
@@ -144,33 +130,6 @@ impl Render for WelcomePage {
                             .border_1()
                             .border_color(cx.theme().colors().border)
                             .rounded_md()
-                            .child(
-                                h_flex()
-                                    .gap_2()
-                                    .child(
-                                        Checkbox::new(
-                                            "enable-vim",
-                                            if VimModeSetting::get_global(cx).0 {
-                                                ui::Selection::Selected
-                                            } else {
-                                                ui::Selection::Unselected
-                                            },
-                                        )
-                                        .on_click(
-                                            cx.listener(move |this, selection, cx| {
-                                                this.telemetry.report_app_event(
-                                                    "welcome page: toggle vim".to_string(),
-                                                );
-                                                this.update_settings::<VimModeSetting>(
-                                                    selection,
-                                                    cx,
-                                                    |setting, value| *setting = Some(value),
-                                                );
-                                            }),
-                                        ),
-                                    )
-                                    .child(Label::new("Enable vim mode")),
-                            )
                             .child(
                                 h_flex()
                                     .gap_2()

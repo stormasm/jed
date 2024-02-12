@@ -9899,7 +9899,6 @@ dependencies = [
  "fs",
  "fuzzy",
  "gpui",
- "install_cli",
  "log",
  "picker",
  "project",
@@ -9910,7 +9909,6 @@ dependencies = [
  "theme_selector",
  "ui",
  "util",
- "vim",
  "workspace",
 ]
 
