@@ -9913,7 +9913,6 @@ name = "welcomg"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "client",
  "db",
  "editor",
  "fuzzy",
