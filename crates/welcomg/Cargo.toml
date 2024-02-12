@@ -9,10 +9,6 @@ license = "GPL-3.0-or-later"
 path = "src/welcome.rs"
 
 [dependencies]
-anyhow.workspace = true
-db.workspace = true
 gpui.workspace = true
-serde.workspace = true
-settings.workspace = true
 ui.workspace = true
 workspace.workspace = true

@@ -1,4 +1,3 @@
-use db::kvp::KEY_VALUE_STORE;
 use gpui::{
     svg, AnyElement, AppContext, EventEmitter, FocusHandle, FocusableView, InteractiveElement,
     ParentElement, Render, Styled, View, ViewContext, VisualContext, WeakView, WindowContext,
@@ -32,10 +31,6 @@ pub fn show_welcome_view(app_state: &Arc<AppState>, cx: &mut AppContext) {
         cx.notify();
     })
     .detach();
-
-    db::write_and_log(cx, || {
-        KEY_VALUE_STORE.write_kvp(FIRST_OPEN.to_string(), "false".to_string())
-    });
 }
 
 pub struct WelcomePage {
@@ -118,8 +113,6 @@ impl Item for WelcomePage {
         Some(cx.new_view(|cx| WelcomePage {
             focus_handle: cx.focus_handle(),
             workspace: self.workspace.clone(),
-            //telemetry: self.telemetry.clone(),
-            //_settings_subscription: cx.observe_global::<SettingsStore>(move |_, cx| cx.notify()),
         }))
     }
 

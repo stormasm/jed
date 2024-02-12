@@ -9912,11 +9912,7 @@ dependencies = [
 name = "welcomg"
 version = "0.1.0"
 dependencies = [
- "anyhow",
- "db",
  "gpui",
- "serde",
- "settings",
  "ui",
  "workspace",
 ]
