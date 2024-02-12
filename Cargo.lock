@@ -9889,6 +9889,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "welcomf"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "client",
+ "db",
+ "editor",
+ "fs",
+ "fuzzy",
+ "gpui",
+ "install_cli",
+ "log",
+ "picker",
+ "project",
+ "schemars",
+ "serde",
+ "settings",
+ "theme",
+ "theme_selector",
+ "ui",
+ "util",
+ "vim",
+ "workspace",
+]
+
+[[package]]
 name = "which"
 version = "4.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
