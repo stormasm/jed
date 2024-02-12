@@ -309,7 +309,7 @@ impl Item for WelcomePage {
     type Event = ItemEvent;
 
     fn tab_content(&self, _: Option<usize>, selected: bool, _: &WindowContext) -> AnyElement {
-        Label::new("Welcome to Zed!")
+        Label::new("Welcome to Jed!")
             .color(if selected {
                 Color::Default
             } else {
