@@ -50,7 +50,7 @@ use util::{
 };
 use uuid::Uuid;
 //use welcome::{show_welcome_view, FIRST_OPEN};
-use welcomf::{show_welcome_view, FIRST_OPEN};
+use welcomg::{show_welcome_view, FIRST_OPEN};
 use workspace::{AppState, WorkspaceStore};
 use zed::{
     app_menus, build_window_options, ensure_only_instance, handle_keymap_file_changes,
@@ -228,6 +228,7 @@ fn main() {
         markdown_preview::init(cx);
         welcome::init(cx);
         welcomf::init(cx);
+        welcomg::init(cx);
 
         cx.set_menus(app_menus());
         initialize_workspace(app_state.clone(), cx);

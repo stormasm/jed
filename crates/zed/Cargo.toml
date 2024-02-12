@@ -156,6 +156,7 @@ uuid.workspace = true
 vim.workspace = true
 welcome.workspace = true
 welcomf.workspace = true
+welcomg.workspace = true
 workspace.workspace = true
 zed_actions.workspace = true
 

@@ -85,6 +85,7 @@ members = [
     "crates/vim",
     "crates/welcome",
     "crates/welcomf",
+    "crates/welcomg",
     "crates/workspace",
     "crates/zed",
     "crates/zed_actions",
@@ -174,6 +175,7 @@ vcs_menu = { path = "crates/vcs_menu" }
 vim = { path = "crates/vim" }
 welcome = { path = "crates/welcome" }
 welcomf = { path = "crates/welcomf" }
+welcomg = { path = "crates/welcomg" }
 workspace = { path = "crates/workspace" }
 zed = { path = "crates/zed" }
 zed_actions = { path = "crates/zed_actions" }

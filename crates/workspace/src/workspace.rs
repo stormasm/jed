@@ -114,6 +114,7 @@ actions!(
         Restart,
         Welcome,
         Welcomf,
+        Welcomg,
         ToggleZoom,
         ToggleLeftDock,
         ToggleRightDock,
